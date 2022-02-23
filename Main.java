@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -73,11 +76,11 @@ public class Main {
 
         System.out.println("===========================================");
         System.out.println("=== homework 5 ============================");
-        Main main = new Main();
-        double[] tab = {-3.3,-2.2,0,-2.345};
-        double[] absTab = main.absValue(tab);
+
+        double[] tab = {-3.3, -2.2, 0, -2.345};
+        double[] absTab = absValue(tab);
         System.out.println("Wartości bezwzględne to:");
-        for(double elem : absTab ){
+        for (double elem : absTab) {
             System.out.println(elem);
         }
 
@@ -86,9 +89,81 @@ public class Main {
         String name1 = "Jerzy";
         String name2 = "Maja";
 
-        System.out.println(name1 + " to: " + main.checkGender(name1));
-        System.out.println(name2 + " to: " + main.checkGender(name2));
+        System.out.println(name1 + " to: " + checkGender(name1));
+        System.out.println(name2 + " to: " + checkGender(name2));
+
+        System.out.println("===========================================");
+        System.out.println("=== ZOO ============================");
+        System.out.println("===========================================");
+
+        Animal animal1 = new Animal("Kobra", 2000, Animal.TypeAnimal.REPTILE);
+        Animal animal2 = new Animal("Żaba", 2020, Animal.TypeAnimal.AMPHIBIAN);
+        Animal animal3 = new Animal("Żółw morski", 1978, Animal.TypeAnimal.REPTILE);
+        Animal animal4 = new Animal("Kobra", 2000, Animal.TypeAnimal.REPTILE);
+
+        System.out.println("Zwierzę 1: " + animal1.getName() + " ma lat " + animal1.getAgeOfAnimal());
+        System.out.println("===========================================");
+        if (animal1.equals(animal4)) {
+            System.out.println("te same zwierzaki");
+        } else {
+            System.out.println("różne zwierzaki");
+        }
+        System.out.println("===========================================");
+        System.out.println(animal1.hashCode());
+        System.out.println(animal4.hashCode());
+        System.out.println("===========================================");
+        System.out.println(animal2.toString());
+        System.out.println("===========================================");
+        Zoo zoo1 = new Zoo("Krakowskie", 1940, new ArrayList<>());
+        Zoo zoo2 = new Zoo("Wrocławskie", 1960, new ArrayList<>());
+        zoo1.addAnimal(animal1);
+        zoo1.addAnimal(animal2);
+        System.out.println("===========================================");
+        zoo2.addAnimal(animal3);
+        zoo2.addAnimal(animal4);
+
+        zoo1.showInfo();
+        zoo2.showInfo();
+        System.out.println("===========================================");
+        System.out.println(" Zwierzęta w Zoo1:");
+        zoo1.showAnimals();
+        System.out.println(" Zwierzęta w Zoo2:");
+        zoo2.showAnimals();
+        System.out.println("===========================================");
+        System.out.println(" Ilość zwierząt w Zoo1: " + zoo1.countAnimals());
+        System.out.println(" Ilość zwierząt w Zoo2: " + zoo2.countAnimals());
+
+        //dziedziczenie
+        System.out.println("===========================================");
+        Animal snake1 = new Snake("Grzechotnik", 2010, Animal.TypeAnimal.AMPHIBIAN, true);
+        System.out.println(snake1.toString());
+        Animal dog1 = new Dog("Spaniel", 2010, Animal.TypeAnimal.MAMMAL, Dog.DogBreed.COCKERSPANIEL);
+        System.out.println(dog1.toString());
+        Animal fish1 = new Fish("Flądra", 2010, Animal.TypeAnimal.FISH, 5);
+        System.out.println(fish1.toString());
+
+        // interfejs Speakable
+        System.out.println("===========================================");
+        System.out.println(" Dźwięki zwierząt:");
+
+        fish1.sound();
+        dog1.sound();
+        snake1.sound();
+
+        System.out.println("===========================================");
+        System.out.println(" Dźwięki zwierząt w pętli:");
+        List<Speakable> soundsOfAnimals = new ArrayList<Speakable>();
+
+        soundsOfAnimals.add(dog1);
+        soundsOfAnimals.add(snake1);
+        soundsOfAnimals.add(fish1);
+
+        for (Speakable s : soundsOfAnimals) {
+            s.sound();
+        }
     }
+
+    // metody do homework5 homework6
     private static double[] absValue(double[] tab) {
         double[] abstab = new double [tab.length];
         int i =0;
@@ -110,3 +185,5 @@ public class Main {
         return gender;
     }
 }
+
+
