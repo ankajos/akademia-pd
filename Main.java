@@ -161,6 +161,43 @@ public class Main {
         for (Speakable s : soundsOfAnimals) {
             s.sound();
         }
+
+
+        // lambdy
+        System.out.println("===========================================");
+        System.out.println("=== LAMBDY ================================");
+        System.out.println("===========================================");
+
+        Numbers numbers = new Numbers( new int[] {-1,2,50,100});
+
+        Lambda1 lambda1 = (int[] nums) -> {
+            int sum1 = 0;
+            for (int i=0; i<nums.length; i++){
+                sum1 += nums[i];
+            }
+            return sum1;
+        };
+
+        System.out.println("suma liczb to " + numbers.add(lambda1));
+
+        Lambda2 lambda2 = (int[] nums) -> lambda1.add(nums) / nums.length;
+
+        System.out.println("średnia liczb to " + numbers.avg(lambda2));
+
+        Lambda3 lambda3 = (int[] nums) -> {
+            for (int i=0; i<nums.length; i++){
+                if ( nums[i] > 2){
+                    System.out.print(nums[i] + " ");
+                }
+            }
+        };
+        System.out.print("liczby większe od 2 to ");
+        numbers.show(lambda3);
+
+
+
+
+
     }
 
     // metody do homework5 homework6
@@ -184,6 +221,11 @@ public class Main {
         }
         return gender;
     }
+
+    public static void convertAnimalsToTxt(Zoo zoo){
+        
+    }
+
 }
 
 
