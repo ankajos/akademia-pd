@@ -1,5 +1,9 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,10 +198,20 @@ public class Main {
         System.out.print("liczby większe od 2 to ");
         numbers.show(lambda3);
 
+        // wyjątki, streamy
+        System.out.println("\n===========================================");
+        System.out.println("=== ZOO dla chętnych ======================");
+        System.out.println("===========================================");
 
+        // stworzenie nowego Zoo
+        Zoo naszeZoo = new Zoo("łódzkie", 1960, new ArrayList<>());
 
+        naszeZoo.addAnimal(animal1);
+        naszeZoo.addAnimal(animal2);
+        naszeZoo.addAnimal(animal3);
+        naszeZoo.addAnimal(animal4);
 
-
+        convertAnimalsToTxt(naszeZoo);
     }
 
     // metody do homework5 homework6
@@ -222,8 +236,23 @@ public class Main {
         return gender;
     }
 
-    public static void convertAnimalsToTxt(Zoo zoo){
-        
+    private static void convertAnimalsToTxt(Zoo zoo){
+        File file = new File("C:\\Users\\ankaj\\animals.txt");
+        try {
+            if (!file.exists()) {
+                System.out.println("File dees not exist. Will be created now.");
+                file.createNewFile();
+            }
+            PrintWriter printWriter = new PrintWriter(file);
+            for(Animal animal : zoo.getAnimals()) {
+                printWriter.println(animal.getName());
+            }
+            System.out.println("Animals names written to file.");
+            printWriter.close();
+        }
+        catch(Exception e) {
+            System.err.println(e);
+        }
     }
 
 }
